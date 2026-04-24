@@ -1,6 +1,5 @@
-ROM python:3.10-slim
+dockerfileFROM python:3.10-slim
 
-# System dependencies فقط اللي محتاجينه
 RUN apt-get update && apt-get install -y \
     tesseract-ocr \
     poppler-utils \
@@ -11,9 +10,14 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-# نثبت CPU-only versions عشان تاخد مساحة أقل
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir \
+    torch==2.1.0+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN find /usr -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true && \
+    find /root -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
 
 COPY . .
 
@@ -23,4 +27,5 @@ RUN mkdir -p output/rules output/definitions output/graphs \
 EXPOSE 8000
 
 CMD ["uvicorn", "api_service:app", "--host", "0.0.0.0", "--port", "8000"]
+
 
