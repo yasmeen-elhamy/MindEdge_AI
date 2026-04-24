@@ -1,0 +1,9 @@
+﻿myenv/
+output/
+models/
+rag_index/
+__pycache__/
+*.pdf
+*.zip
+.env
+.vscode/
