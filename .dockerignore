@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.git/
+.env
+*.log
+models/
+rag_index/
+chat_logs/
+temp/
+output/
+*.pdf
+*.png
+*.jpg
