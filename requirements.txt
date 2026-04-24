@@ -1,26 +1,21 @@
-# EduScan – Python dependencies
-# Install with:
-#   pip install -r requirements.txt
-
-# ── LLM API ────────────────────────────────────────────────────────────────
+# Web framework
+fastapi
+uvicorn
+python-multipart
+ 
+# LLM & AI
 openai
-requests
-python-dotenv
-
-# ── OCR ────────────────────────────────────────────────────────────────────
-python-doctr[torch]
-Pillow
-numpy
-opencv-python
-autocrop
-
-# ── NLP ────────────────────────────────────────────────────────────────────
-nltk
-
-# ── RAG / Vector store ─────────────────────────────────────────────────────
-chromadb
+huggingface-hub
 sentence-transformers
-huggingface_hub
-
-# ── Documents ──────────────────────────────────────────────────────────────
-python-docx
+chromadb
+ 
+# OCR
+pytesseract
+pdf2image
+Pillow
+ 
+# Utils
+python-dotenv
+nltk
+requests
+pymupdf
