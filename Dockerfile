@@ -1,4 +1,5 @@
 FROM python:3.10-slim
+
 RUN apt-get update && apt-get install -y \
     tesseract-ocr \
     poppler-utils \
@@ -9,9 +10,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir \
-    torch==2.4.0+cpu
-    --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir torch==2.4.0+cpu --index-url https://download.pytorch.org/whl/cpu
 
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -26,5 +25,3 @@ RUN mkdir -p output/rules output/definitions output/graphs \
 EXPOSE 8000
 
 CMD ["uvicorn", "api_service:app", "--host", "0.0.0.0", "--port", "8000"]
-
-
