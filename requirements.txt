@@ -2,18 +2,19 @@
 fastapi
 uvicorn
 python-multipart
- 
+
 # LLM & AI
 openai
 huggingface-hub
+numpy<2
 sentence-transformers
 chromadb
- 
+
 # OCR
 pytesseract
 pdf2image
 Pillow
- 
+
 # Utils
 python-dotenv
 nltk
