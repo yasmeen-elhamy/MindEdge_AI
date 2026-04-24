@@ -8,8 +8,6 @@ import os
 import sys
 from pathlib import Path
 from dotenv import load_dotenv
-import tkinter as tk
-from tkinter import filedialog
 
 # ── Paths ──────────────────────────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).parent.resolve()
@@ -36,20 +34,18 @@ def setup_output_dirs():
 
 
 def load_token() -> str:
-    """Loads HF_TOKEN from .env or prompts user."""
+    """Loads HF_TOKEN from .env or environment variables."""
     load_dotenv(dotenv_path=PROJECT_ROOT / ".env", override=False)
     token = os.environ.get("HF_TOKEN", "").strip()
     if token:
         print("[✅] HF_TOKEN loaded from .env")
     else:
-        token = input("⚠️  HF_TOKEN not found. Paste your token: ").strip()
-        os.environ["HF_TOKEN"] = token
-        print("[✅] HF_TOKEN set for this session (not saved).")
+        print("[⚠️] HF_TOKEN not found. Please set it as an environment variable.")
     return token
 
 
 def pick_files() -> list:
-    """Opens file picker or reads from CLI args."""
+    """Reads file paths from CLI args only (no GUI on server)."""
     if len(sys.argv) > 1:
         paths = sys.argv[1:]
         print(f"[✅] {len(paths)} file(s) provided via command line:")
@@ -57,32 +53,8 @@ def pick_files() -> list:
             print(f"     • {p}")
         return paths
 
-    print("\n[📂] Opening file picker — select your PDFs / images…")
-    root = tk.Tk()
-    root.withdraw()
-    root.attributes("-topmost", True)
-
-    paths = list(filedialog.askopenfilenames(
-        parent=root,
-        title="Select study files (PDF / JPG / PNG)",
-        filetypes=[
-            ("Study materials", "*.pdf *.jpg *.jpeg *.png"),
-            ("PDF files",       "*.pdf"),
-            ("Image files",     "*.jpg *.jpeg *.png"),
-            ("All files",       "*.*"),
-        ],
-    ))
-    root.destroy()
-
-    if paths:
-        print(f"[✅] {len(paths)} file(s) selected:")
-        for p in paths:
-            print(f"     • {p}")
-    else:
-        print("[⚠️]  No files selected — exiting.")
-        sys.exit(0)
-
-    return paths
+    print("[⚠️] No files provided — pass file paths as command line arguments.")
+    sys.exit(0)
 
 
 def export_to_folder(category: str, title: str, content: str):
