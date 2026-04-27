@@ -12,7 +12,8 @@ import pytesseract
 from pdf2image import convert_from_path
 from config import OUTPUT_DIR
 from llm import correct_text
-
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 _TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
