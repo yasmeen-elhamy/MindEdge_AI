@@ -33,7 +33,11 @@ log = logging.getLogger("StudyPlan")
 # ─────────────────────────────────────────────────────────────────────────────
 # CONFIG  (shared with main.py — values kept identical)
 # ─────────────────────────────────────────────────────────────────────────────
-HF_TOKEN          = "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"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+HF_TOKEN = os.getenv("HF_TOKEN")
 _QW_MODEL_ID      = "Qwen/Qwen2.5-7B-Instruct"
 _QW_BASE_URL      = "https://router.huggingface.co/v1"
 _QW_MAX_TOKENS    = 800
