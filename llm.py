@@ -9,8 +9,8 @@ import time
 from typing import Optional
 from openai import OpenAI, APIStatusError, APITimeoutError, APIConnectionError
 
-_QW_MODEL_ID      = "Qwen/Qwen2.5-7B-Instruct"
-_QW_BASE_URL      = "https://router.huggingface.co/v1"
+_QW_BASE_URL = "https://api.openai.com/v1"
+_QW_MODEL_ID = "gpt-4o-mini"
 _QW_MAX_TOKENS    = 2048
 _QW_TEMPERATURE   = 0.7
 _QW_TOP_P         = 0.9
@@ -24,11 +24,12 @@ _QW_CLIENT: Optional[OpenAI] = None
 def _get_client() -> OpenAI:
     global _QW_CLIENT
     if _QW_CLIENT is None:
-        token = os.environ.get("HF_TOKEN", "").strip()
+        token = os.environ.get("OPENAI_API_KEY", "").strip()
+
         if not token:
             raise EnvironmentError(
-                "\n[llm] ❌  HF_TOKEN is not set!\n"
-                "  Fix: create a .env file with: HF_TOKEN=hf_your_token_here"
+                "\n[llm] ❌  OPENAI_API_KEY is not set!\n"
+"  Fix: create a .env file with: OPENAI_API_KEY=sk-your_key_here"
             )
         _QW_CLIENT = OpenAI(base_url=_QW_BASE_URL, api_key=token)
     return _QW_CLIENT
