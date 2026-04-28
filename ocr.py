@@ -10,6 +10,8 @@ import concurrent.futures
 from PIL import Image
 import platform
 import pytesseract
+from pdf2image import convert_from_path
+
 if platform.system() == "Windows":
     _TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 else:
