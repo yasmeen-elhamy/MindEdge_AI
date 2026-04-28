@@ -108,10 +108,13 @@ def run_ocr_pipeline(file_paths: list) -> tuple[dict, str]:
                 all_corrected[path] = corrected
                 last_raw = raw
 
+
     if not all_corrected:
         print("[❌] No text extracted from any file.")
     else:
         print(f"\n[✅] OCR done. {len(all_corrected)} file(s) processed.")
 
     return all_corrected, last_raw
+
+#test
 
