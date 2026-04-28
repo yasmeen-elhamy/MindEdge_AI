@@ -8,11 +8,16 @@ import os
 import logging
 import concurrent.futures
 from PIL import Image
+import platform
 import pytesseract
-from pdf2image import convert_from_path
-from config import OUTPUT_DIR
-from llm import correct_text
-import pytesseract
+if platform.system() == "Windows":
+    _TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+else:
+   
+    _TESSERACT_PATH = "/usr/bin/tesseract"
+
+pytesseract.pytesseract.tesseract_cmd = _TESSERACT_PATH
+
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
