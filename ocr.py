@@ -18,10 +18,8 @@ else:
 
 pytesseract.pytesseract.tesseract_cmd = _TESSERACT_PATH
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-_TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
 def setup_tesseract():
@@ -114,3 +112,4 @@ def run_ocr_pipeline(file_paths: list) -> tuple[dict, str]:
         print(f"\n[✅] OCR done. {len(all_corrected)} file(s) processed.")
 
     return all_corrected, last_raw
+
