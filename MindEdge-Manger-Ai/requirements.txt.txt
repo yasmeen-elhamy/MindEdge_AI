@@ -1,0 +1,13 @@
+torch
+nltk
+opencv-python
+Pillow
+numpy
+doctr
+python-docx
+chromadb
+sentence-transformers
+autocrop
+huggingface_hub
+requests
+tk

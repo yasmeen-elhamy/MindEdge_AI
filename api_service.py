@@ -37,7 +37,7 @@ if not HF_TOKEN:
 
 # ── FastAPI app ────────────────────────────────────────────────────────────
 app = FastAPI(
-    title="EduScan API",
+    title="MindEdge API",
     description="Intelligent Study Scanner & Tutor",
     version="1.0.0",
 )
@@ -78,7 +78,7 @@ class ChatResponse(BaseModel):
 
 @app.get("/")
 def root():
-    return {"status": "EduScan API is running 🚀"}
+    return {"status": "MindEdge API is running 🚀"}
 
 
 @app.get("/health")

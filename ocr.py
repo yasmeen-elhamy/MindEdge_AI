@@ -11,6 +11,9 @@ from PIL import Image
 import platform
 import pytesseract
 from pdf2image import convert_from_path
+from google import genai
+
+import os
 
 if platform.system() == "Windows":
     _TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
