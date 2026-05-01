@@ -12,7 +12,8 @@ import platform
 import pytesseract
 from pdf2image import convert_from_path
 from google import genai
-
+from config import OUTPUT_DIR
+from llm import correct_text
 import os
 
 if platform.system() == "Windows":
